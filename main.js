@@ -7,6 +7,8 @@ enchant();
 // リソース
 var IMAGE_PATH      = "lib/enchant.js/images/";
 
+var PAD_IMAGE       = IMAGE_PATH + "pad.png";
+var APAD_IMAGE      = IMAGE_PATH + "apad.png";
 var START_IMAGE     = IMAGE_PATH + "start.png";
 var END_IMAGE       = IMAGE_PATH + "end.png";
 var AVATAR_CODE     = "1:3:0:2009:2109:27540";
@@ -28,6 +30,8 @@ var RESOURCE = [
 ];
 // nineleap 対応
 enchant.nineleap = { assets: [START_IMAGE, END_IMAGE] };
+// pad 対応
+enchant.ui = { assets: [PAD_IMAGE, APAD_IMAGE] };
 
 // 定数
 var BG_Y = 50;
@@ -53,12 +57,20 @@ window.onload = function() {
             game.assets["avatarBg"+i+".png"] = game.assets[IMAGE_PATH + "avatarBg"+i+".png"];
         game.assets["start.png"]    = game.assets[START_IMAGE];
         game.assets["end.png"]      = game.assets[END_IMAGE];
+        game.assets["pad.png"]      = game.assets[PAD_IMAGE];
+        game.assets["apad.png"]     = game.assets[APAD_IMAGE];
+        
         
         // セットアップ
         var scene = game.rootScene;
-        game.rootScene.backgroundColor = "black";
+        game.rootScene.backgroundColor = "#444";
         game.monsterInterval = 120;
         game.dragomRate = 0;
+        var pad = new Pad();
+        pad.y = 223;
+        pad.backgroundColor = "white";
+        pad._element.style.borderRadius = "16px";
+        scene.addChild(pad);
         
         // 背景
         bg = new AvatarBG(1);
