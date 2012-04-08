@@ -212,12 +212,12 @@ var Player = Class.create(Avatar, {
         }
         
         // 左右移動
-        if (input.left) {
+        if (input.left && this.x > 0) {
             this.x -= this.speed;
             this.action = "run";
             this.left();
         }
-        else if (input.right) {
+        else if (input.right && this.x < 250) {
             this.x += this.speed;
             this.action = "run";
             this.right();
